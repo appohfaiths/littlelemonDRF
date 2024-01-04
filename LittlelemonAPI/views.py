@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
-from rest_framework import generics
+from django.core.paginator import Paginator, EmptyPage
+from rest_framework import generics, viewsets
 from rest_framework.renderers import TemplateHTMLRenderer, StaticHTMLRenderer
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.response import Response
@@ -37,6 +38,17 @@ class MenuItemsView(generics.ListCreateAPIView):
             ordering_fields = ordering.split(',')
             queryset = queryset.order_by(*ordering_fields)
 
+        # pagination
+        perpage = self.request.query_params.get('perpage', default=2)
+        page = self.request.query_params.get('page', default=1)
+
+        paginator = Paginator(queryset, per_page=perpage)
+
+        try:
+            queryset = paginator.page(number=page)
+        except EmptyPage:
+            queryset = []
+
         return queryset
 
     def list(self, request, *args, **kwargs):
@@ -48,6 +60,15 @@ class MenuItemsView(generics.ListCreateAPIView):
 class SingleMenuItemView(generics.RetrieveUpdateDestroyAPIView):
     queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer
+
+# Class based filtering
+
+
+class MenuItemsViewSet(viewsets.ModelViewSet):
+    queryset = MenuItem.objects.all()
+    serializer_class = MenuItemSerializer
+    ordering_fields = ['price', 'inventory']
+    search_fields = ['title', 'category__title']
 
 
 class CategoryView(generics.ListCreateAPIView):

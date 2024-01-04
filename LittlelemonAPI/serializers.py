@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
+import bleach
 from .models import MenuItem, Category
 from decimal import Decimal
 
@@ -26,14 +27,19 @@ class MenuItemSerializer(serializers.HyperlinkedModelSerializer):
     #         raise serializers.ValidationError(
     #             'Price should not be less than 2.0')
     # using validation method 2
-
     def validate(self, attrs):
+        # sanitizing data in validate method
+        # attrs['title'] = bleach.clean(attrs['title'])
         if (attrs['price'] < 2):
             raise serializers.ValidationError(
                 'Price should not be less than 2.36')
         if (attrs['inventory'] < 0):
             raise serializers.ValidationError('Stock cannot be negative')
         return super().validate(attrs)
+    # sanitizing data
+
+    def validate_title(self, value):
+        return bleach.clean(value)
     price_after_tax = serializers.SerializerMethodField(
         method_name='calculate_tax')
     # category = CategorySerializer(read_only=True)
