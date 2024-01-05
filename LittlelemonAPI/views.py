@@ -2,10 +2,13 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage
 from rest_framework import generics, viewsets
 from rest_framework.renderers import TemplateHTMLRenderer, StaticHTMLRenderer
-from rest_framework.decorators import api_view, renderer_classes
+from rest_framework.decorators import api_view, renderer_classes, permission_classes, throttle_classes
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.throttling import AnonRateThrottle, UserRateThrottle
 from .models import MenuItem, Category
 from .serializers import MenuItemSerializer, CategorySerializer
+from .throttles import TenCallsPerMinute
 
 # Create your views here.
 
@@ -65,10 +68,19 @@ class SingleMenuItemView(generics.RetrieveUpdateDestroyAPIView):
 
 
 class MenuItemsViewSet(viewsets.ModelViewSet):
+    # throttle_classes = [AnonRateThrottle, UserRateThrottle]
     queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer
     ordering_fields = ['price', 'inventory']
     search_fields = ['title', 'category__title']
+
+    # checking for throttling on post calls
+    def get_throttles(self):
+        if self.action == 'create':
+            throttle_classes = [UserRateThrottle]
+        else:
+            throttle_classes = []
+        return [throttle() for throttle in throttle_classes]
 
 
 class CategoryView(generics.ListCreateAPIView):
@@ -97,3 +109,31 @@ def menu(request):
 def welcome(request):
     data = '<html><body><h1>Welcome To Little Lemon API Project</h1></body></html>'
     return Response(data)
+
+
+@api_view()
+@permission_classes([IsAuthenticated])
+def secret(request):
+    return Response({"message": "Some secret message"})
+
+
+@api_view()
+@permission_classes([IsAuthenticated])
+def manager_view(request):
+    if request.user.groups.filter(name='Manager').exists():
+        return Response({"message": "Only Manager should see this"})
+    else:
+        return Response({"message": "You are not authorised to see this"}, 403)
+
+
+@api_view()
+@throttle_classes([AnonRateThrottle])
+def throttle_check(request):
+    return Response({"message": "Successful"})
+
+
+@api_view()
+@permission_classes([IsAuthenticated])
+@throttle_classes([TenCallsPerMinute])
+def throttle_check_auth(request):
+    return Response({"message": "message for logged in users only"})

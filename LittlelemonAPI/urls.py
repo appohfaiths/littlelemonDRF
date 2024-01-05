@@ -1,4 +1,5 @@
 from django.urls import path
+from rest_framework.authtoken.views import obtain_auth_token
 from . import views
 
 urlpatterns = [
@@ -13,4 +14,10 @@ urlpatterns = [
          views.MenuItemsViewSet.as_view({'get': 'list'})),
     path('filtered-menu-items/<int:pk>',
          views.MenuItemsViewSet.as_view({'get': 'retrieve'})),
+    path('secret', views.secret, name='secret'),
+    path('api-token-auth', obtain_auth_token, name='api_token_auth'),
+    path('manager-view', views.manager_view, name='manager_view'),
+    path('throttle-check', views.throttle_check, name='throttle_check'),
+    path('throttle-check-auth', views.throttle_check_auth,
+         name='throttle_check_auth')
 ]
