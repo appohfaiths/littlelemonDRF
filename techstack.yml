@@ -1,0 +1,128 @@
+repo_name: appohfaiths/littlelemonDRF
+report_id: 9493e05284e3699035d0d1f37210b09a
+version: 0.1
+repo_type: Public
+timestamp: '2024-01-23T13:38:01+00:00'
+requested_by: appohfaiths
+provider: github
+branch: main
+detected_tools_count: 9
+tools:
+- name: Python
+  description: A clear and powerful object-oriented programming language, comparable
+    to Perl, Ruby, Scheme, or Java.
+  website_url: https://www.python.org
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/993/pUBY5pVj.png
+  detection_source_url: https://github.com/appohfaiths/littlelemonDRF
+  detection_source: Repo Metadata
+- name: Django
+  description: The Web framework for perfectionists with deadlines
+  website_url: https://www.djangoproject.com/
+  version: 5.0.1
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Frameworks (Full Stack)
+  image_url: https://img.stackshare.io/service/994/4aGjtNQv.png
+  detection_source_url: https://github.com/appohfaiths/littlelemonDRF/blob/main/Pipfile.lock
+  detection_source: Pipfile
+  last_updated_by: KodjoCode
+  last_updated_on: 2024-01-06 11:01:53.000000000 Z
+- name: Git
+  description: Fast, scalable, distributed revision control system
+  website_url: http://git-scm.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Version Control System
+  image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/appohfaiths/littlelemonDRF
+  detection_source: Repo Metadata
+- name: PyPI
+  description: A repository of software for the Python programming language
+  website_url: https://pypi.org/
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Hosted Package Repository
+  image_url: https://img.stackshare.io/service/12572/-RIWgodF_400x400.jpg
+  detection_source_url: https://github.com/appohfaiths/littlelemonDRF/blob/main/Pipfile
+  detection_source: Pipfile
+  last_updated_by: KodjoCode
+  last_updated_on: 2024-01-04 22:08:32.000000000 Z
+- name: bleach
+  description: An easy safelist-based HTML-sanitizing tool
+  package_url: https://pypi.org/project/bleach
+  version: 6.1.0
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20045/default_b0b684477aefb2da4c92a4bafd91d26e16511cd1.png
+  detection_source_url: https://github.com/appohfaiths/littlelemonDRF/blob/main/Pipfile.lock
+  detection_source: Pipfile
+  last_updated_by: KodjoCode
+  last_updated_on: 2024-01-04 22:08:32.000000000 Z
+- name: django-filter
+  description: Django-filter is a reusable Django application for allowing users to
+    filter querysets dynamically
+  package_url: https://pypi.org/project/django-filter
+  version: '23.5'
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20158/default_31f4acd7a71628261771488a4d0f37f63bff1598.png
+  detection_source_url: https://github.com/appohfaiths/littlelemonDRF/blob/main/Pipfile.lock
+  detection_source: Pipfile
+  last_updated_by: KodjoCode
+  last_updated_on: 2024-01-06 11:01:53.000000000 Z
+- name: djangorestframework
+  description: Web APIs for Django, made easy
+  package_url: https://pypi.org/project/djangorestframework
+  version: 3.14.0
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19870/default_d05f6f09935776629f62e8aed365805502c14921.png
+  detection_source_url: https://github.com/appohfaiths/littlelemonDRF/blob/main/Pipfile.lock
+  detection_source: Pipfile
+  last_updated_by: KodjoCode
+  last_updated_on: 2024-01-06 11:01:53.000000000 Z
+- name: djangorestframework-simplejwt
+  description: A minimal JSON Web Token authentication plugin for Django REST Framework
+  package_url: https://pypi.org/project/djangorestframework-simplejwt
+  version: 5.2.2
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/pypi/image.png
+  detection_source_url: https://github.com/appohfaiths/littlelemonDRF/blob/main/Pipfile.lock
+  detection_source: Pipfile
+  last_updated_by: KodjoCode
+  last_updated_on: 2024-01-06 11:01:53.000000000 Z
+- name: djangorestframework-xml
+  description: XML support for Django REST Framework
+  package_url: https://pypi.org/project/djangorestframework-xml
+  version: 2.0.0
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/pypi/image.png
+  detection_source_url: https://github.com/appohfaiths/littlelemonDRF/blob/main/Pipfile.lock
+  detection_source: Pipfile
+  last_updated_by: KodjoCode
+  last_updated_on: 2024-01-06 11:01:53.000000000 Z
